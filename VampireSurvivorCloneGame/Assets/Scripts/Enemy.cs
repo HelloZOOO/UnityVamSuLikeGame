@@ -34,6 +34,16 @@ public class Enemy : MonoBehaviour
 
     void LateUpdate() 
     {
+        if(!isLive)
+            return; //플레이어가 죽어있으면 바로 코드를 종료시켜버리는 필터코드
+
         spriter.flipX = target.position.x < rigid.position.x;
+    }
+
+    void OnEnable()
+    {
+        //게임매니저에 이미 플레이어가 저장되어있기떄문에 타겟을 저장할 수 있음
+        //target의 Type은 Rigidbody2D라 플레이어 내부에 Rigidbody2D를 불러와야한다
+        target = GameManager.instance.player.GetComponent<Rigidbody2D>();
     }
 }

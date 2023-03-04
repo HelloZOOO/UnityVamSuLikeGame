@@ -390,8 +390,10 @@
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/Player.cs"
+"Assets/Scripts/PoolManager.cs"
 "Assets/Scripts/Repositon.cs"
 "Assets/Scripts/Repostion.cs"
+"Assets/Scripts/Spawner.cs"
 -langversion:9.0
 
 /deterministic
