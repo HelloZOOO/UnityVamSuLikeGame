@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Repostion : MonoBehaviour
 {
+    //Collider2D는 모든유형의 콜라이더를 포함한다
+    //Enemy가 죽어도 콜라이더가 다른 오브젝트에 영향을 주지 않기 위함임
+    Collider2D coll;
+
+    //초기화부분
+    void Awake() 
+    {
+        coll = GetComponent<Collider2D>();
+    }
     //트리거가 체크된 콜라이더를 벗어났을때
     //이를 위해 플레이어에 Area를 만들었다 (충돌여부를 확인하기 위해)
     void OnTriggerExit2D(Collider2D collision)
@@ -53,6 +62,12 @@ public class Repostion : MonoBehaviour
                 }
                 break;
             case "Enemy":
+                if(coll.enabled) //만약 Enemy태그의 콜라이더가 살아있어? 
+                {
+                    //플레이어의 이동방향의 맞은편에서 텔레포트시키도록함
+                    //플레이어의 이동방향 * (타일크기(텔포범위) + 소환위치를 약간 변형)
+                    transform.Translate(playerDir * 20 + new Vector3(Random.Range(-3f,3f),Random.Range(-3f,3f),0));
+                }
                 break;
         }
     }
