@@ -70,4 +70,32 @@ public class Enemy : MonoBehaviour
         maxHealth = data.health;
         health = data.health; //최대피통이 올라갔기때문에 현피통도 초기화해준다
     }
+
+    void OnTriggerEnter2D(Collider2D collision) 
+    {
+        //플레이어의 무기에 충돌했을때만 코드가 실행
+        //Bullet 태그와 충돌하지 않았으면 코드가 if문을 만나기때문에 코드가 종료됨
+        if(!collision.CompareTag("Bullet"))
+            return;
+        
+        //자신과 닿은 콜라이더안에 컴포넌트 Bullet을 불러와 그 속에있는 damage변수의 크기만큼 자신의 피를 깎는다
+        health -= collision.GetComponent<Bullet>().damage;
+
+        if (health > 0)
+        {
+            // ... 살아있음
+        }
+        else
+        {
+            // ... 죽음
+            Dead();
+        }
+    }
+
+    void Dead()
+    {
+        //죽은상태는 곧 몬스터 프리팹의 비활성화
+        //파괴를하면 안된다 프리팹은 계속 재활용할것이기 때문에
+        gameObject.SetActive(false);
+    }
 }
