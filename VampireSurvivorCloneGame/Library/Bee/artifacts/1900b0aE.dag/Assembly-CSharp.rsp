@@ -395,6 +395,7 @@
 "Assets/Scripts/Repositon.cs"
 "Assets/Scripts/Repostion.cs"
 "Assets/Scripts/Spawner.cs"
+"Assets/Scripts/Weapon.cs"
 -langversion:9.0
 
 /deterministic
