@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1809.6
     height: 1680.8
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Scene
   m_RootView: {fileID: 9}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 83
+  controlID: 26
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -92,7 +92,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 804.8
-    width: 559.2
+    width: 562.39996
     height: 826.00006
   m_MinSize: {x: 232, y: 271}
   m_MaxSize: {x: 10002, y: 10021}
@@ -122,12 +122,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 624.8
     y: 0
-    width: 559.2
+    width: 562.39996
     height: 1630.8
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 33
+  controlID: 41
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 559.2
+    width: 562.39996
     height: 804.8
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 27
+  controlID: 35
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -195,9 +195,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1184
+    x: 1187.2
     y: 0
-    width: 625.6
+    width: 622.4
     height: 1630.8
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
@@ -958,7 +958,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 631.2
     y: 876
-    width: 557.2
+    width: 560.39996
     height: 805.00006
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -977,22 +977,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 81
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Prefabs
   m_LastFoldersGridSize: 81
   m_LastProjectPath: C:\Unityprojects\UnityVamSuLikeGame\VampireSurvivorCloneGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a2730000
-    m_LastClickedID: 29602
-    m_ExpandedIDs: 00000000fa710000fc71000000ca9a3bffffff7f
+    m_SelectedIDs: 94730000
+    m_LastClickedID: 29588
+    m_ExpandedIDs: 00000000f2710000f471000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1020,7 +1020,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000fa710000fc710000
+    m_ExpandedIDs: 00000000f2710000f4710000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1096,9 +1096,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1190.4
+    x: 1193.6
     y: 71.200005
-    width: 624.6
+    width: 621.4
     height: 1609.8
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -1139,7 +1139,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 631.2
     y: 71.200005
-    width: 557.2
+    width: 560.39996
     height: 783.8
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -1150,7 +1150,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 06fbffff44700000
+      m_ExpandedIDs: 06fbffff2e7000004270000096700000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1454,9 +1454,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.46132994, y: 2.0538893, z: -0.2482451}
+    m_Target: {x: -22.198261, y: 4.6256547, z: -0.7314458}
     speed: 2
-    m_Value: {x: -0.46132994, y: 2.0538893, z: -0.2482451}
+    m_Value: {x: -22.198261, y: 4.6256547, z: -0.7314458}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1507,9 +1507,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 3.4993849
+    m_Target: 63.924416
     speed: 2
-    m_Value: 3.4993849
+    m_Value: 63.924416
   m_Ortho:
     m_Target: 1
     speed: 2

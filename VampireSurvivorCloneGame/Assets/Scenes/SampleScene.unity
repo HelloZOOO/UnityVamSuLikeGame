@@ -14082,6 +14082,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1599866781}
+  - component: {fileID: 1599866782}
   m_Layer: 0
   m_Name: Weapon 0
   m_TagString: Untagged
@@ -14104,6 +14105,23 @@ Transform:
   m_Father: {fileID: 851900069}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1599866782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599866780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294396f3e1064f642b2cec48a8b79597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  prefabId: 1
+  damage: 11
+  count: 2
+  speed: 0
 --- !u!1 &1602961609
 GameObject:
   m_ObjectHideFlags: 0
