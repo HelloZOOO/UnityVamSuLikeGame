@@ -10,7 +10,14 @@ public class Weapon : MonoBehaviour
     public float damage;
     public int count; //공전하는 근접무기를 몇개나 배치할겁니까?
     public float speed;
-
+    float timer; //일정시간마다 원격공격하기위해\
+    Player player; //부모인 Player를 변수화
+    
+    void Awake()
+    {
+        //부모 컴포넌트를 가져오는 방법
+        player = GetComponentInParent<Player>();
+    }
     void Start() 
     {
         Init();
@@ -24,24 +31,35 @@ public class Weapon : MonoBehaviour
                 transform.Rotate(Vector3.back * speed * Time.deltaTime);
                 break;
             default:
+                timer += Time.deltaTime;
+                
+                //경과한 시간이 공격속도보다 크다면
+                //timer를 0초로 바꾸고 총알을 발사한다
+                if (timer > speed)
+                {
+                    timer = 0f;
+                    Fire();
+                }
                 break;
         }
 
         if (Input.GetButtonDown("Jump"))
-            levelUp(20,5);
+            levelUp(10,1);
     }
 
     //초기화방식이 ID에 따라 다르다
     public void Init()
     {
+        //id가 n번일때
         switch (id)
         {
             case 0:
-            speed = -150;
+            speed = -200; //근접무기 공전속도
             Batch();
 
                 break;
             default:
+                speed = 0.3f; //원거리무기 발사속도
                 break;
         }
     }
@@ -89,7 +107,32 @@ public class Weapon : MonoBehaviour
             bullet.Translate(bullet.up * 1.5f, Space.World);
 
             //Bullet.cs.의 데미지, 관통횟수인데 -1로두면 무한으로 관통시키겠다
-            bullet.GetComponent<Bullet>().Init(damage, -1);
+            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero);
         }
+    }
+
+    //총알을 발사하는 로직이며 그냥 풀매니저에서 총알을 가져올것이다
+    void Fire()
+    {
+        //스캐너를 불러와 플레이어 가까이 있는 적을 타게팅한다
+        //플레이어스크립트 내부 스캐너 내부에 가장가까운 타겟이 없다면(false) 그냥 return
+        if (!player.scanner.nearestTarget)
+            return;
+        
+        //이건 단순한 근처 적의 '위치값'
+        Vector3 targetPos = player.scanner.nearestTarget.position;
+        //위치값
+        Vector3 dir = targetPos - transform.position;
+        dir = dir.normalized;
+
+        //poolManger에서 프리팹아이디를 가져와서 bullet변수에 담는다
+        Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
+        bullet.position = transform.position; //bullet의 시작 위치는 현재 플레이어의 시작위치
+        //FromToRotation : 지정된 축을 중심으로 목표를 향해 회전하는 함수
+        //(Vector3.up 이니까 z 축으로 dir방향값으로 돌린다)
+        bullet.rotation = Quaternion.FromToRotation(Vector3.up,dir);
+        //Bullet.cs.의 데미지, 관통횟수, 방향값
+        bullet.GetComponent<Bullet>().Init(damage, 1, dir);
+
     }
 }
