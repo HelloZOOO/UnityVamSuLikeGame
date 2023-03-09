@@ -84,7 +84,8 @@ public class Enemy : MonoBehaviour
     {
         //플레이어의 무기에 충돌했을때만 코드가 실행
         //Bullet 태그와 충돌하지 않았으면 코드가 if문을 만나기때문에 코드가 종료됨
-        if(!collision.CompareTag("Bullet"))
+        //isLive를 킨 이유는 GameManager를 두번 불러올때 콜라이더가 작동된다면 중복으로 실행될 수 있기 때문이다
+        if(!collision.CompareTag("Bullet") || !isLive)
             return;
         
         //자신과 닿은 콜라이더안에 컴포넌트 Bullet을 불러와 그 속에있는 damage변수의 크기만큼 자신의 피를 깎는다
@@ -105,6 +106,8 @@ public class Enemy : MonoBehaviour
             rigid.simulated = false; //리지드바디도 비활성화해라 리지드바디는 simulated로 꺼야한다
             spriter.sortingOrder = 1; //죽고나서 게임오브젝트 레이어를 하나 낮춘다
             anim.SetBool("Dead", true); //죽음상태 애니메이션
+            GameManager.instance.kill++;
+            GameManager.instance.GetEXP();
         }
     }
 
