@@ -12,19 +12,24 @@ public class Enemy : MonoBehaviour
     public Animator anim;
     public bool isLive; //살았는지 죽었는지 확인함
     Rigidbody2D rigid; //내위치(몬스터위치)
+    Collider2D coll;
     SpriteRenderer spriter;
+    WaitForFixedUpdate wait;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
         spriter = GetComponent<SpriteRenderer>();
+        wait = new WaitForFixedUpdate(); //하나의 FixedUdate를 기다리는것이기때문에 매개변수는 따로 X
     }
 
     //물리적인 추적을 할거기 때문에 일반 Update() 함수를 쓰지않고 FixedUpdate를 사용할것임
     void FixedUpdate()
     {
-        if(!isLive)
+        //GetCurrentAnimatorStateInfo(애니메이션레이어).애니메이션이름
+        if(!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
             return; //플레이어가 죽어있으면 바로 코드를 종료시켜버리는 필터코드
 
         //타겟의 위치에서 나의 위치를 뺸 값
@@ -51,6 +56,10 @@ public class Enemy : MonoBehaviour
         //target의 Type은 Rigidbody2D라 플레이어 내부에 Rigidbody2D를 불러와야한다
         target = GameManager.instance.player.GetComponent<Rigidbody2D>();
         isLive = true;
+        coll.enabled = true;
+        rigid.simulated = true;;
+        spriter.sortingOrder = 2;
+        anim.SetBool("Dead", false);
         health = maxHealth; //objectPooling이 일어났을때 피를 원래대로 되돌리기 위해서 maxHealth를 넣어줌
     }
 
@@ -80,16 +89,34 @@ public class Enemy : MonoBehaviour
         
         //자신과 닿은 콜라이더안에 컴포넌트 Bullet을 불러와 그 속에있는 damage변수의 크기만큼 자신의 피를 깎는다
         health -= collision.GetComponent<Bullet>().damage;
+        StartCoroutine(KnockBack());
 
         if (health > 0)
         {
             // ... 살아있음
+            anim.SetTrigger("Hit");
         }
         else
         {
             // ... 죽음
-            Dead();
+            // PoolManager에서 재활용해야하기 때문에 다시 true로 변경해야한다
+            isLive = false;
+            coll.enabled = false; //콜라이더 비활성화해라
+            rigid.simulated = false; //리지드바디도 비활성화해라 리지드바디는 simulated로 꺼야한다
+            spriter.sortingOrder = 1; //죽고나서 게임오브젝트 레이어를 하나 낮춘다
+            anim.SetBool("Dead", true); //죽음상태 애니메이션
         }
+    }
+
+    //넉백을 구현해봅시다
+    IEnumerator KnockBack()
+    {
+        yield return wait; // 하나의 물리 프레임을 딜레이해줄것이다
+        Vector3 playerPos = GameManager.instance.player.transform.position;
+        Vector3 dirVec = transform.position - playerPos; //현재위치 - 플레이어 위치
+        //노멀라이즈를 해줘야 순수하게 방향값만 가진 값이 된다
+        //리지드바디도 2D기 떄문에 ForceMode도 2D가 된다
+        rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
     }
 
     void Dead()
