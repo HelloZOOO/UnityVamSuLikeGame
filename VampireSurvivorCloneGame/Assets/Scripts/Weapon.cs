@@ -44,7 +44,7 @@ public class Weapon : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Jump"))
-            levelUp(10,1);
+            levelUp(2,1);
     }
 
     //초기화방식이 ID에 따라 다르다
