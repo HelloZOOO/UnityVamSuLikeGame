@@ -22,19 +22,29 @@ public class HUD : MonoBehaviour
         switch (type)
         {
             case InforType.Exp:
-                
+                float curExp = GameManager.instance.exp;
+                float maxExp = GameManager.instance.nextExp[GameManager.instance.level];
+                mySlider.value = curExp / maxExp;
                 break;
             case InforType.Level:
-                
+                //string.Format("쓸문자{0}",{0}에 들어갈 매개변수);
+                //F0 : 소수점이 없다 라는 뜻
+                myText.text = string.Format("Lv.{0:F0}",GameManager.instance.level);
                 break;
             case InforType.Kill:
-                
+                myText.text = string.Format("{0:F0}",GameManager.instance.kill);
                 break;
             case InforType.Time:
-                
+                //흐르는 시간이 아니라 남은 시간부터 계산
+                float remainTime = GameManager.instance.maxGameTime - GameManager.instance.gameTime;
+                int min = Mathf.FloorToInt(remainTime / 60);
+                int sec = Mathf.FloorToInt(remainTime % 60);
+                myText.text = string.Format("{0:D2}:{1:D2}",min,sec); //Dn : 자리수 지정 D2니까 XX 형식으로 지정
                 break;
             case InforType.Health:
-                
+                float curHealth = GameManager.instance.health;
+                float maxHealth = GameManager.instance.maxHealth;
+                mySlider.value = curHealth / maxHealth;
                 break;
         }
     }

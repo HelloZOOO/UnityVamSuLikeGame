@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public float maxGameTime = 2 * 10f; //최대 게임타임 (숫자는 '초')
     [Header("# Player Info")]
     //플레이어의 레벨 시스템을 저장하기 위한 변수
+    public int health;
+    public int maxHealth = 100;
     public int level;
     public int kill;
     public int exp;
@@ -23,6 +25,11 @@ public class GameManager : MonoBehaviour
     void Awake() 
     {
         instance = this;
+    }
+
+    void Start() 
+    {
+        health = maxHealth;
     }
 
     void Update()
